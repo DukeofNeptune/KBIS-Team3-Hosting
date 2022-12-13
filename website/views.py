@@ -88,7 +88,7 @@ def viewArticle(request, articleID):
     # get the article
     data = Article.objects.get(id=articleID)
     # get the paragraphs
-    content = Paragraph.objects.filter(article=articleID)
+    content = Paragraph.objects.filter(article=articleID).order_by("id")
     #This is page will display an article that corresponds with articleID: "+str(articleID)
     context = {
         "data":data,
@@ -210,7 +210,7 @@ def editArticle(request,articleID):
 
             # grab all the appropriate data
             article = Article.objects.get(id=articleID)
-            content = Paragraph.objects.filter(article=article)
+            content = Paragraph.objects.filter(article=article).order_by("id")
             
             # create the context
             context = {
